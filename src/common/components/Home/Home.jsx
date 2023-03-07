@@ -13,9 +13,7 @@ const Home = () => {
 
     return (
         <div className="container home">
-            <h2>Homepage</h2>
-
-            <div className="posts-container">
+            <div>
                 {posts.map(post => (
                     <Post key={post.id} {...post} />
                 ))}

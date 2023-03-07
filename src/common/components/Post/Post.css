@@ -1,5 +1,13 @@
 .post-container {
-    border: solid 1px #f1356d;
-    padding: 1em;
-    border-radius: 8px;
+    padding: 1.25em;
+    margin-bottom: 2em;
+}
+
+.post-container:hover {
+    box-shadow: 0.25em 0.25em 0.5em rgba(128, 128, 128, 0.35);
+    cursor: pointer;
+}
+
+.post-container h2 {
+    color: #f1356d;
 }
