@@ -8,16 +8,27 @@ const Home = () => {
 
     const [posts, setPosts] = useState(null);
     const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
 
     const handleDelete = (postId) => {
         setPosts(posts.filter(post => post.id !== postId));
     }
 
     useEffect(() => {
-        fetch(" http://localhost:8000/posts")
-            .then(response => response.json())
+        fetch(" http://localhost:8001/posts")
+            .then(response => {
+                if (!response.ok) {
+                    throw Error("Could not fetch the requested resource.");
+                }
+                return response.json();
+            })
             .then(data => {
                 setPosts(data);
+                setIsPending(false);
+                setError(null);
+            })
+            .catch(error => {
+                setError(error.message);
                 setIsPending(false);
             });
     }, []);
@@ -25,6 +36,7 @@ const Home = () => {
     return (
         <div className="container home">
             {isPending && <p>Loading...</p>}
+
             {posts && <>
                 <PostsList title="All Posts" posts={posts} handleDelete={handleDelete}/>
                 <PostsList
@@ -33,6 +45,8 @@ const Home = () => {
                     handleDelete={handleDelete}
                 />
             </>}
+
+            {error && <p>{error}</p>}
         </div>
     );
 }
