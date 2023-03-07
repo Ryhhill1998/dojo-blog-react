@@ -1,11 +1,12 @@
 import Navbar from "../common/components/Navbar/Navbar";
+import Home from "../common/components/Home/Home";
 
 const App = () => {
     return (
         <div className="App">
             <Navbar />
             <div className="content">
-                <h2>App Content</h2>
+                <Home />
             </div>
         </div>
     );
