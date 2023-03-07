@@ -1,7 +1,8 @@
 import {useState} from "react";
 
 import "./Home.css";
-import Post from "../Post/Post";
+
+import PostsList from "../PostsList/PostsList";
 
 const Home = () => {
 
@@ -13,11 +14,8 @@ const Home = () => {
 
     return (
         <div className="container home">
-            <div>
-                {posts.map(post => (
-                    <Post key={post.id} {...post} />
-                ))}
-            </div>
+            <PostsList title="All Posts" posts={posts} />
+            <PostsList title="Mario's Posts" posts={posts.filter(post => post.author === "Mario")} />
         </div>
     );
 }
