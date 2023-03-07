@@ -12,10 +12,18 @@ const Home = () => {
         {id: 3, title: "Web Dev Top Tips", content: "Lorem ipsum...", author: "Mario"}
     ]);
 
+    const handleBinClicked = (postId) => {
+        setPosts(posts => posts.filter(post => post.id !== postId));
+    }
+
     return (
         <div className="container home">
-            <PostsList title="All Posts" posts={posts} />
-            <PostsList title="Mario's Posts" posts={posts.filter(post => post.author === "Mario")} />
+            <PostsList title="All Posts" posts={posts} handleBinClicked={handleBinClicked} />
+            <PostsList
+                title="Mario's Posts"
+                posts={posts.filter(post => post.author === "Mario")}
+                handleBinClicked={handleBinClicked}
+            />
         </div>
     );
 }

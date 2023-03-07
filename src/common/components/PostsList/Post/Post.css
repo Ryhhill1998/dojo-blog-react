@@ -11,6 +11,17 @@
 .post-container h3 {
     color: #f1356d;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-container h3 .icon {
+    opacity: 0.7;
+}
+
+.post-container h3 .icon:hover {
+    opacity: 1;
 }
 
 .post-container h3, .post-container p:nth-child(2) {
