@@ -10,4 +10,9 @@
 
 .post-container h3 {
     color: #f1356d;
+    font-weight: 500;
+}
+
+.post-container h3, .post-container p:nth-child(2) {
+    margin-bottom: 0.75em;
 }
