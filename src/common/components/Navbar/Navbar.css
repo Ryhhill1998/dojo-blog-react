@@ -12,6 +12,28 @@
     color: #f1356d;
 }
 
+.navbar a {
+    padding: 0.5em;
+    border: solid 1px white;
+}
+
 .navbar a:first-child {
     margin-right: 2em;
+}
+
+.navbar a:first-child:hover {
+    color: #f1356d;
+}
+
+.navbar a:last-child {
+    border-radius: 8px;
+    background-color: #f1356d;
+    color: white;
+}
+
+.navbar a:last-child:hover {
+    border-radius: 8px;
+    border-color: #f1356d;
+    background-color: white;
+    color: #f1356d;
 }
