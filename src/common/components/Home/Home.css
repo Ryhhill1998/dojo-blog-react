@@ -1,3 +1,8 @@
 .home h2 {
     font-weight: 500;
 }
+
+.posts-container {
+    display: flex;
+    margin-top: 2em;
+}
