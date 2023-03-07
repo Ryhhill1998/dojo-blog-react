@@ -1,0 +1,17 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px lightgrey;
+    margin-bottom: 3em;
+}
+
+.navbar h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #f1356d;
+}
+
+.navbar a:first-child {
+    margin-right: 2em;
+}
