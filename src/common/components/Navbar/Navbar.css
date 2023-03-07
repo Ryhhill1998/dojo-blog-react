@@ -7,18 +7,19 @@
 }
 
 .navbar h1 {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #f1356d;
 }
 
 .navbar a {
+    font-size: 0.9rem;
     padding: 0.5em;
     border: solid 1px white;
 }
 
 .navbar a:first-child {
-    margin-right: 2em;
+    margin-right: 0.5em;
 }
 
 .navbar a:first-child:hover {
