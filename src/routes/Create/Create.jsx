@@ -1,7 +1,8 @@
 import "./Create.css";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {logDOM} from "@testing-library/react";
 
 const defaultFormFields = {
     title: "",
@@ -12,6 +13,8 @@ const defaultFormFields = {
 const Create = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
+    const [isPending, setIsPending] = useState(false);
+    const [error, setError] = useState(null);
 
     const {title, content, author} = formFields;
 
@@ -27,8 +30,27 @@ const Create = () => {
 
     const handleFormSubmitted = (e) => {
         e.preventDefault();
-        console.log(title, content, author);
+        setIsPending(true);
+
+        fetch("http://localhost:8001/posts", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(formFields)
+        })
+            .then(() => {
+                console.log("New blog added");
+                setIsPending(false);
+            })
+            .catch(error => setError(error));
     };
+
+    useEffect(() => {
+        if (isPending) {
+            console.log("loading...");
+        } else {
+            setFormFields(defaultFormFields);
+        }
+    }, [isPending]);
 
     return (
         <div className="create-post-container container">
@@ -54,7 +76,12 @@ const Create = () => {
                     </select>
                 </label>
 
-                <button>Add <FontAwesomeIcon icon={faPlus} className="close-button icon" /></button>
+                {!isPending &&
+                <button type="submit" >
+                    Add <FontAwesomeIcon icon={faPlus} className="close-button icon"/>
+                </button>}
+
+                {isPending && <button>Loading...</button>}
             </form>
         </div>
     );
