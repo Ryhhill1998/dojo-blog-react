@@ -8,14 +8,16 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useState} from "react";
 
 const defaultFilters = {
-    author: "Mario",
+    author: "All",
 };
 
 const PostsList = ({title, posts}) => {
 
     const [postsToDisplay, setPostsToDisplay] = useState(posts);
+    const [titleToDisplay, setTitleToDisplay] = useState(title);
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const [filters, setFilters] = useState(defaultFilters);
+
     const {author} = filters;
 
     const handleFilterClicked = () => {
@@ -33,14 +35,22 @@ const PostsList = ({title, posts}) => {
     }
 
     const handleApplyClicked = () => {
-        setPostsToDisplay(posts.filter(post => post.author === author));
+        if (author === defaultFilters.author) {
+            setPostsToDisplay(posts);
+            setTitleToDisplay(title);
+        } else {
+            setPostsToDisplay(posts.filter(post => post.author === author));
+            setTitleToDisplay(author + "'s Posts");
+        }
+
+        handleFilterClicked();
     }
 
     return (
         <div className="posts-container">
             <div className="posts-header">
                 <h2>
-                    {title}
+                    {titleToDisplay}
                     <FontAwesomeIcon icon={faSliders} className="close-button icon" onClick={handleFilterClicked} />
                 </h2>
 
@@ -55,6 +65,7 @@ const PostsList = ({title, posts}) => {
                             <label className="filter">
                                 Filter by author
                                 <select name="author" value={author} onChange={handleFilterChange}>
+                                    <option>All</option>
                                     <option>Mario</option>
                                     <option>Luigi</option>
                                     <option>Yoshi</option>
