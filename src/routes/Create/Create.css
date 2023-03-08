@@ -6,7 +6,7 @@
 .create-post-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     gap: 1em;
     margin: 0 auto;
     padding: 2em 0;
@@ -22,6 +22,10 @@
     border-radius: 8px;
     border: solid 1px grey;
     padding: 0.5em;
+}
+
+.create-post-form textarea {
+    resize: none;
 }
 
 .create-post-form input:focus, .create-post-form textarea:focus, .create-post-form select:focus {
