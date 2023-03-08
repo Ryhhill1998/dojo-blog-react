@@ -1,8 +1,6 @@
-import "./Home.css";
+import PostsList from "../../common/components/PostsList/PostsList";
 
-import PostsList from "../PostsList/PostsList";
-
-import useFetch from "../../hooks/useFetch";
+import useFetch from "../../common/hooks/useFetch";
 
 const Home = () => {
 

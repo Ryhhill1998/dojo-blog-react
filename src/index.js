@@ -7,10 +7,11 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import App from './routes/App';
+import App from './routes/Root/App';
 import reportWebVitals from './reportWebVitals';
 import ErrorPage from "./common/components/ErrorPage/ErrorPage";
-import Home from "./common/components/Home/Home";
+import Home from "./routes/Home/Home";
+import Create from "./routes/Create/Create";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "/create",
+                element: <Create />,
             },
         ],
     },
