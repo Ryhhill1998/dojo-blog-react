@@ -18,12 +18,7 @@ const Home = () => {
     return (
         <div className="container home">
             {postsStatus === "pending" && <p>Loading...</p>}
-
-            {allPosts.length > 0 &&
-                <>
-                    <PostsList title="All Posts" posts={allPosts} />
-                    <PostsList title="Mario's Posts" posts={allPosts.filter(post => post.author === "Mario")}/>
-                </>}
+            {allPosts.length > 0 && <PostsList title="All Posts" posts={allPosts} />}
         </div>
     );
 }
