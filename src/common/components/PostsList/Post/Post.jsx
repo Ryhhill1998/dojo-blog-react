@@ -5,8 +5,12 @@ import {faTrash} from "@fortawesome/free-solid-svg-icons";
 
 import {useNavigate} from "react-router-dom";
 
+import {useDispatch} from "react-redux";
+import {deletePost} from "../../../../features/posts/postsSlice";
+
 const Post = ({id, title, content, author, preview}) => {
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const navigateToPost = () => navigate("/posts/" + id);
@@ -18,9 +22,8 @@ const Post = ({id, title, content, author, preview}) => {
     }
 
     const handleDelete = (id) => {
-        fetch("http://localhost:8001/posts/" + id, {
-            method: "DELETE",
-        }).then(() => window.location.reload());
+        console.log(id)
+        dispatch(deletePost(id));
     }
 
     const contentToDisplay = preview ? content.substring(0, 100) + "..." : content;

@@ -17,7 +17,11 @@ export const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-
+        addPost: state => {},
+        deletePost: (state, action) => {
+            const id = action.payload;
+            state.allPosts = state.allPosts.filter(post => post.id !== id);
+        },
     },
     extraReducers: builder => {
         builder
@@ -29,11 +33,13 @@ export const postsSlice = createSlice({
                 state.allPosts = action.payload;
             })
             .addCase(fetchPosts.rejected, (state, action) => {
-                state.status = "failed";
+                state.status = "fail";
                 state.error = action.error.message;
             });
     }
 });
+
+export const {deletePost} = postsSlice.actions;
 
 export const selectAllPosts = state => state.posts.allPosts;
 export const getPostsStatus = state => state.posts.status;

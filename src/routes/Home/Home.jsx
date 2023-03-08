@@ -1,7 +1,7 @@
 import PostsList from "../../common/components/PostsList/PostsList";
 
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllPosts, fetchPosts, getPostsStatus, getPostsError} from "../../features/posts/postsSlice";
+import {selectAllPosts, fetchPosts, getPostsStatus} from "../../features/posts/postsSlice";
 import {useEffect} from "react";
 
 const Home = () => {
@@ -20,10 +20,10 @@ const Home = () => {
             {postsStatus === "loading" && <p>Loading...</p>}
 
             {allPosts.length > 0 &&
-            <>
-                <PostsList title="All Posts" posts={allPosts} />
-                <PostsList title="Mario's Posts" posts={allPosts.filter(post => post.author === "Mario")}/>
-            </>}
+                <>
+                    <PostsList title="All Posts" posts={allPosts} />
+                    <PostsList title="Mario's Posts" posts={allPosts.filter(post => post.author === "Mario")}/>
+                </>}
         </div>
     );
 }
