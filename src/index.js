@@ -12,6 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import ErrorPage from "./common/components/ErrorPage/ErrorPage";
 import Home from "./routes/Home/Home";
 import Create from "./routes/Create/Create";
+import PostDetails from "./routes/PostDetails/PostDetails";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: "/create",
                 element: <Create />,
+            },
+            {
+                path: "/posts/:id",
+                element: <PostDetails />,
             },
         ],
     },

@@ -10,12 +10,6 @@
     background-color: white;
 }
 
-.navbar h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #f1356d;
-}
-
 .navbar a {
     font-size: 0.9rem;
     padding: 0.5em;

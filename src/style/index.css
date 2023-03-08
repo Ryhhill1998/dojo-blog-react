@@ -19,6 +19,16 @@
   padding: 1.5em 0.75em;
 }
 
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f1356d;
+}
+
+h2, h3 {
+  font-weight: 500;
+}
+
 a {
   text-decoration: none;
   color: grey;
