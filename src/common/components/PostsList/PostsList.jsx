@@ -7,7 +7,7 @@ const PostsList = ({title, posts}) => {
             <h2>{title}</h2>
 
             {posts.map(post => (
-                <Post key={post.id} {...post} />
+                <Post key={post.id} {...post} preview={true} />
             ))}
         </div>
     );

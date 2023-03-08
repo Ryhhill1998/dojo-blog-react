@@ -5,7 +5,7 @@ import {faTrash} from "@fortawesome/free-solid-svg-icons";
 
 import {useNavigate} from "react-router-dom";
 
-const Post = ({id, title, content, author}) => {
+const Post = ({id, title, content, author, preview}) => {
 
     const navigate = useNavigate();
 
@@ -23,13 +23,15 @@ const Post = ({id, title, content, author}) => {
         }).then(() => window.location.reload());
     }
 
+    const contentToDisplay = preview ? content.substring(0, 100) + "..." : content;
+
     return (
         <div className="post-container" onClick={handlePostClicked}>
             <h3>
                 {title}
                 <FontAwesomeIcon icon={faTrash} className="close-button icon" onClick={() => handleDelete(id)}/>
             </h3>
-            <p>{content}</p>
+            <p>{contentToDisplay}</p>
             <p><em>by {author}</em></p>
         </div>
     );
