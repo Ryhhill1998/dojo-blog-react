@@ -26,7 +26,11 @@ const Post = ({id, title, content, author, preview}) => {
         navigate("/");
     }
 
-    const contentToDisplay = preview ? content.substring(0, 100) + "..." : content;
+    let contentToDisplay = content;
+
+    if (preview && content?.length > 100) {
+        contentToDisplay = content.substring(0, 100) + "...";
+    }
 
     return (
         <div className="post-container" onClick={handlePostClicked}>
