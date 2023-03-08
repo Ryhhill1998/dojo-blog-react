@@ -10,27 +10,20 @@ const Home = () => {
 
     const allPosts = useSelector(selectAllPosts);
     const postsStatus = useSelector(getPostsStatus);
-    const postsError = useSelector(getPostsError);
 
     useEffect(() => {
-        if (postsStatus === "idle") {
-            dispatch(fetchPosts());
-        }
+        if (postsStatus === "idle") dispatch(fetchPosts());
     }, [dispatch, postsStatus]);
-
-    // console.log(allPosts)
 
     return (
         <div className="container home">
-            {/*{isPending && <p>Loading...</p>}*/}
+            {postsStatus === "loading" && <p>Loading...</p>}
 
-            {allPosts &&
+            {allPosts.length > 0 &&
             <>
                 <PostsList title="All Posts" posts={allPosts} />
                 <PostsList title="Mario's Posts" posts={allPosts.filter(post => post.author === "Mario")}/>
             </>}
-
-            {/*{error && <p>{error}</p>}*/}
         </div>
     );
 }
