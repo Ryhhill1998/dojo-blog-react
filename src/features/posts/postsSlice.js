@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice, nanoid} from '@reduxjs/toolkit';
 
 const initialState = {
     allPosts: [],
-    status: "idle", // "idle" | "loading" | "success" | "fail"
+    status: "idle", // "idle" | "pending" | "success" | "fail"
     error: null
 };
 
@@ -10,6 +10,16 @@ const POSTS_URL = "http://localhost:8001/posts";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async() => {
     const response = await fetch(POSTS_URL);
+    return await response.json();
+});
+
+export const addNewPost = createAsyncThunk("posts/addNewPost", async(post) => {
+    const response = await fetch(POSTS_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(post)
+    });
+
     return await response.json();
 });
 
@@ -37,7 +47,7 @@ export const postsSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(fetchPosts.pending, (state, action) => {
-                state.status = "loading";
+                state.status = "pending";
             })
             .addCase(fetchPosts.fulfilled, (state, action) => {
                 state.status = "success";
@@ -46,7 +56,11 @@ export const postsSlice = createSlice({
             .addCase(fetchPosts.rejected, (state, action) => {
                 state.status = "fail";
                 state.error = action.error.message;
-            });
+            })
+            .addCase(addNewPost.fulfilled, (state, action) => {
+                state.status = "success";
+                state.allPosts.push(action.payload);
+            })
     }
 });
 

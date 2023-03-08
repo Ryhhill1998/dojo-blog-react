@@ -17,7 +17,7 @@ const Home = () => {
 
     return (
         <div className="container home">
-            {postsStatus === "loading" && <p>Loading...</p>}
+            {postsStatus === "pending" && <p>Loading...</p>}
 
             {allPosts.length > 0 &&
                 <>

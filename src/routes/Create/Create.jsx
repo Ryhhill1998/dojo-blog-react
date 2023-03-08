@@ -5,7 +5,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {useDispatch} from "react-redux";
-import {addPost} from "../../features/posts/postsSlice";
+import {addNewPost} from "../../features/posts/postsSlice";
 
 const defaultFormFields = {
     title: "",
@@ -16,7 +16,6 @@ const defaultFormFields = {
 const Create = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
-
     const {title, content, author} = formFields;
 
     const dispatch = useDispatch();
@@ -34,7 +33,8 @@ const Create = () => {
 
     const handleFormSubmitted = (e) => {
         e.preventDefault();
-        dispatch(addPost(formFields));
+        dispatch(addNewPost(formFields));
+        setFormFields(defaultFormFields);
         navigate("/");
     };
 
@@ -62,7 +62,7 @@ const Create = () => {
                     </select>
                 </label>
 
-                <button type="submit" >
+                <button type="submit">
                     Add <FontAwesomeIcon icon={faPlus} className="close-button icon"/>
                 </button>
             </form>
