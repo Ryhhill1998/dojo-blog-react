@@ -11,7 +11,9 @@ const PostDetails = () => {
     return (
         <div className="container">
             <h2>Post Details - {id}</h2>
-            <Post {...post} />
+            {isPending && <p>Loading...</p>}
+            {error && <p>{error.message}</p>}
+            {post && <Post {...post} />}
         </div>
     );
 };
