@@ -35,6 +35,10 @@
     cursor: pointer;
 }
 
+.posts-container .filter-dropdown h3 button:last-child {
+    margin-left: 0.5em;
+}
+
 .posts-container .filter-dropdown h3 button:hover {
     background-color: #f1356d;
     color: white;

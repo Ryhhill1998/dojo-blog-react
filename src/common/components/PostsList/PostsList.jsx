@@ -20,6 +20,15 @@ const PostsList = ({title, posts}) => {
 
     const {author} = filters;
 
+    const hideFilterDropdown = () => {
+        setIsDropdownVisible(false);
+    }
+
+    const resetFilters = () => {
+        setPostsToDisplay(posts);
+        setTitleToDisplay(title);
+    }
+
     const handleFilterClicked = () => {
         setIsDropdownVisible(!isDropdownVisible);
     }
@@ -36,14 +45,18 @@ const PostsList = ({title, posts}) => {
 
     const handleApplyClicked = () => {
         if (author === defaultFilters.author) {
-            setPostsToDisplay(posts);
-            setTitleToDisplay(title);
+            resetFilters();
         } else {
             setPostsToDisplay(posts.filter(post => post.author === author));
             setTitleToDisplay(author + "'s Posts");
         }
 
-        handleFilterClicked();
+        hideFilterDropdown();
+    }
+
+    const handleResetClicked = () => {
+        resetFilters();
+        hideFilterDropdown();
     }
 
     return (
@@ -58,7 +71,10 @@ const PostsList = ({title, posts}) => {
                     <div className="filter-dropdown">
                         <h3>
                             Filters
-                            <button onClick={handleApplyClicked}>Apply</button>
+                            <div>
+                                <button onClick={handleApplyClicked}>Apply</button>
+                                <button onClick={handleResetClicked}>Reset</button>
+                            </div>
                         </h3>
 
                         <div className="filters-container">
