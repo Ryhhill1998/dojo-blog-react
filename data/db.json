@@ -1,13 +1,13 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Welcome to the party!",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed augue lacus viverra vitae. Scelerisque felis imperdiet proin fermentum leo. At volutpat diam ut venenatis tellus in metus vulputate eu. In aliquam sem fringilla ut morbi tincidunt augue. Dolor sit amet consectetur adipiscing. Mauris augue neque gravida in. Suspendisse faucibus interdum posuere lorem ipsum dolor sit. Erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Eros donec ac odio tempor orci dapibus ultrices. Vitae auctor eu augue ut lectus arcu bibendum at. Lorem ipsum dolor sit amet consectetur adipiscing. Cursus metus aliquam eleifend mi in nulla posuere. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sit amet venenatis urna cursus eget nunc scelerisque.",
       "author": "Mario"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "I can't believe it's not butter!",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed augue lacus viverra vitae. Scelerisque felis imperdiet proin fermentum leo. At volutpat diam ut venenatis tellus in metus vulputate eu. In aliquam sem fringilla ut morbi tincidunt augue. Dolor sit amet consectetur adipiscing. Mauris augue neque gravida in. Suspendisse faucibus interdum posuere lorem ipsum dolor sit. Erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Eros donec ac odio tempor orci dapibus ultrices. Vitae auctor eu augue ut lectus arcu bibendum at. Lorem ipsum dolor sit amet consectetur adipiscing. Cursus metus aliquam eleifend mi in nulla posuere. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sit amet venenatis urna cursus eget nunc scelerisque.",
       "author": "Yoshi"

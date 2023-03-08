@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, nanoid} from '@reduxjs/toolkit';
 
 const initialState = {
     allPosts: [],
@@ -17,7 +17,18 @@ export const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        addPost: state => {},
+        addPost: (state, action) => {
+            const {title, content, author} = action.payload;
+
+            const newPost = {
+                id: nanoid(),
+                title,
+                content,
+                author
+            };
+
+            state.allPosts.push(newPost);
+        },
         deletePost: (state, action) => {
             const id = action.payload;
             state.allPosts = state.allPosts.filter(post => post.id !== id);
@@ -39,7 +50,7 @@ export const postsSlice = createSlice({
     }
 });
 
-export const {deletePost} = postsSlice.actions;
+export const {addPost, deletePost} = postsSlice.actions;
 
 export const selectAllPosts = state => state.posts.allPosts;
 export const getPostsStatus = state => state.posts.status;

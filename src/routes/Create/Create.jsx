@@ -4,6 +4,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+import {useDispatch} from "react-redux";
+import {addPost} from "../../features/posts/postsSlice";
+
 const defaultFormFields = {
     title: "",
     content: "",
@@ -13,11 +16,10 @@ const defaultFormFields = {
 const Create = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const [isPending, setIsPending] = useState(false);
-    const [error, setError] = useState(null);
 
     const {title, content, author} = formFields;
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleFieldChange = ({target}) => {
@@ -32,19 +34,8 @@ const Create = () => {
 
     const handleFormSubmitted = (e) => {
         e.preventDefault();
-        setIsPending(true);
-
-        fetch("http://localhost:8001/posts", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(formFields)
-        })
-            .then(() => {
-                setIsPending(false);
-                setFormFields(defaultFormFields)
-                navigate("/");
-            })
-            .catch(error => setError(error));
+        dispatch(addPost(formFields));
+        navigate("/");
     };
 
     return (
@@ -71,12 +62,9 @@ const Create = () => {
                     </select>
                 </label>
 
-                {!isPending &&
                 <button type="submit" >
                     Add <FontAwesomeIcon icon={faPlus} className="close-button icon"/>
-                </button>}
-
-                {isPending && <button disabled>Loading...</button>}
+                </button>
             </form>
         </div>
     );

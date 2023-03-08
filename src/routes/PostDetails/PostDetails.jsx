@@ -17,11 +17,11 @@ const PostDetails = () => {
         if (!allPosts.length) navigate("/");
     }, [allPosts, navigate]);
 
-    const foundPost = allPosts.find(post => post.id === +id);
+    const foundPost = allPosts.find(post => post.id === id);
 
     return (
         <div className="container">
-            <h2>Post Details - {id}</h2>
+            <h2>Post Details</h2>
 
             <Post {...foundPost} />
         </div>

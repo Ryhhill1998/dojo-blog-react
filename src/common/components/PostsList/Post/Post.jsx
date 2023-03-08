@@ -22,8 +22,8 @@ const Post = ({id, title, content, author, preview}) => {
     }
 
     const handleDelete = (id) => {
-        console.log(id)
         dispatch(deletePost(id));
+        navigate("/");
     }
 
     const contentToDisplay = preview ? content.substring(0, 100) + "..." : content;
