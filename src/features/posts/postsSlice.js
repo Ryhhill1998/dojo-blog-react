@@ -23,6 +23,14 @@ export const addNewPost = createAsyncThunk("posts/addNewPost", async(post) => {
     return await response.json();
 });
 
+export const deletePost = createAsyncThunk("posts/deletePost", async(id) => {
+    await fetch(POSTS_URL + "/" + id, {
+        method: "DELETE"
+    });
+
+    return id;
+});
+
 export const postsSlice = createSlice({
     name: 'posts',
     initialState,
@@ -58,13 +66,14 @@ export const postsSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(addNewPost.fulfilled, (state, action) => {
-                state.status = "success";
                 state.allPosts.push(action.payload);
+            })
+            .addCase(deletePost.fulfilled, (state, action) => {
+                console.log(action.payload)
+                state.allPosts = state.allPosts.filter(post => post.id !== action.payload);
             })
     }
 });
-
-export const {addPost, deletePost} = postsSlice.actions;
 
 export const selectAllPosts = state => state.posts.allPosts;
 export const getPostsStatus = state => state.posts.status;
