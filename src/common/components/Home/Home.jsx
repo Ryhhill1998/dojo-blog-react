@@ -1,37 +1,16 @@
-import {useEffect, useState} from "react";
-
 import "./Home.css";
 
 import PostsList from "../PostsList/PostsList";
 
+import useFetch from "../../hooks/useFetch";
+
 const Home = () => {
 
-    const [posts, setPosts] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
+    const {data: posts, isPending, error} = useFetch("http://localhost:8001/posts");
 
     const handleDelete = (postId) => {
-        setPosts(posts.filter(post => post.id !== postId));
+        console.log("delete clicked");
     }
-
-    useEffect(() => {
-        fetch(" http://localhost:8001/posts")
-            .then(response => {
-                if (!response.ok) {
-                    throw Error("Could not fetch the requested resource.");
-                }
-                return response.json();
-            })
-            .then(data => {
-                setPosts(data);
-                setIsPending(false);
-                setError(null);
-            })
-            .catch(error => {
-                setError(error.message);
-                setIsPending(false);
-            });
-    }, []);
 
     return (
         <div className="container home">
