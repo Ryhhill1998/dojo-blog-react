@@ -7,9 +7,7 @@ const Post = ({id, title, content, author, handleDelete}) => {
 
     const navigate = useNavigate();
 
-    const navigateToPost = () => {
-        navigate("/posts/" + id);
-    }
+    const navigateToPost = () => navigate("/posts/" + id);
 
     return (
         <div className="post-container" onClick={navigateToPost}>
