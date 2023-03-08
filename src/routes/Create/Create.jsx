@@ -2,7 +2,7 @@ import "./Create.css";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useEffect, useState} from "react";
-import {logDOM} from "@testing-library/react";
+import {useNavigate} from "react-router-dom";
 
 const defaultFormFields = {
     title: "",
@@ -17,6 +17,8 @@ const Create = () => {
     const [error, setError] = useState(null);
 
     const {title, content, author} = formFields;
+
+    const navigate = useNavigate();
 
     const handleFieldChange = ({target}) => {
         const {name, value} = target;
@@ -38,19 +40,12 @@ const Create = () => {
             body: JSON.stringify(formFields)
         })
             .then(() => {
-                console.log("New blog added");
                 setIsPending(false);
+                setFormFields(defaultFormFields)
+                navigate("/");
             })
             .catch(error => setError(error));
     };
-
-    useEffect(() => {
-        if (isPending) {
-            console.log("loading...");
-        } else {
-            setFormFields(defaultFormFields);
-        }
-    }, [isPending]);
 
     return (
         <div className="create-post-container container">
@@ -81,7 +76,7 @@ const Create = () => {
                     Add <FontAwesomeIcon icon={faPlus} className="close-button icon"/>
                 </button>}
 
-                {isPending && <button>Loading...</button>}
+                {isPending && <button disabled>Loading...</button>}
             </form>
         </div>
     );
