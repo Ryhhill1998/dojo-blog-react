@@ -2,6 +2,7 @@ import "./PostsList.css";
 import Post from "./Post/Post";
 
 const PostsList = ({title, posts}) => {
+
     return (
         <div className="posts-container">
             <h2>{title}</h2>
