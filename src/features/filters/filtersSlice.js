@@ -17,15 +17,17 @@ export const filtersSlice = createSlice({
         hideDropdown: state => {
             state.visible = false;
         },
-        addFilter: (state, action) => {
-            const {name, value} = action.payload;
-            state.filters[name] = value;
+        applyFilters: (state, action) => {
+            state.filters = action.payload;
         },
+        resetFilters: state => {
+            state.filters = initialState.filters;
+        }
     }
 })
 
 
-export const { toggleDropdown, hideDropdown, addFilter } = filtersSlice.actions
+export const { toggleDropdown, hideDropdown, applyFilters, resetFilters } = filtersSlice.actions
 export const getFilters = state => state.filters.filters;
 export const getVisibility = state => state.filters.visible;
 export default filtersSlice.reducer

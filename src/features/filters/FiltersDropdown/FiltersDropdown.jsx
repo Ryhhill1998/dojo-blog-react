@@ -1,63 +1,56 @@
 import "./FiltersDropdown.css";
 
-import {useDispatch, useSelector} from "react-redux";
-import {getFilters, addFilter} from "../filtersSlice";
+import {useDispatch} from "react-redux";
+import {applyFilters, resetFilters, hideDropdown} from "../filtersSlice";
+import {useState} from "react";
+
+const defaultFilters = {
+    author: "All",
+}
 
 const FiltersDropdown = () => {
 
-    const filters = useSelector(getFilters);
+    const dispatch = useDispatch();
 
+    const [filters, setFilters] = useState(defaultFilters);
     const {author} = filters;
 
-    // const hideFilterDropdown = () => {
-    //     setIsDropdownVisible(false);
-    // }
-    //
-    // const resetFilters = () => {
-    //     setPostsToDisplay(allPosts);
-    //     setTitleToDisplay("All Posts");
-    // }
-    //
-    // const handleFilterChange = ({target}) => {
-    //     const {name, value} = target;
-    //
-    //     setFilters(filters => {
-    //         const updatedFilters = {...filters};
-    //         updatedFilters[name] = value;
-    //         return updatedFilters;
-    //     });
-    // }
-    //
-    // const handleApplyClicked = () => {
-    //     if (author === defaultFilters.author) {
-    //         resetFilters();
-    //     } else {
-    //         setPostsToDisplay(allPosts.filter(post => post.author === author));
-    //         setTitleToDisplay(author + "'s Posts");
-    //     }
-    //
-    //     hideFilterDropdown();
-    // }
-    //
-    // const handleResetClicked = () => {
-    //     resetFilters();
-    //     hideFilterDropdown();
-    // }
+    const handleFilterChange = ({target}) => {
+        const {name, value} = target;
+
+        setFilters(filters => {
+            const updatedFilters = {...filters};
+            filters[name] = value;
+            console.log(updatedFilters)
+            return updatedFilters;
+        });
+
+        console.log("filters updated")
+    }
+
+    const handleApplyClicked = () => {
+        dispatch(applyFilters(filters));
+    }
+
+    const handleResetClicked = () => {
+        dispatch(resetFilters());
+        dispatch(hideDropdown());
+    }
 
     return (
         <div className="filter-dropdown">
             <h3>
                 Filters
                 <div>
-                    <button>Apply</button>
-                    <button>Reset</button>
+                    <button onClick={handleApplyClicked}>Apply</button>
+                    <button onClick={handleResetClicked}>Reset</button>
                 </div>
             </h3>
 
             <div className="filters-container">
                 <label className="filter">
                     Filter by author
-                    <select name="author" value={author} onChange={() => console.log("change")}>
+                    <select name="author" value={author} onChange={handleFilterChange}>
                         <option>All</option>
                         <option>Mario</option>
                         <option>Luigi</option>
