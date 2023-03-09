@@ -40,8 +40,10 @@ const PostsList = () => {
     useEffect(() => {
         if (!author || author === "All") {
             setPostsToDisplay(allPosts);
+            setTitleToDisplay("All Posts");
         } else {
             setPostsToDisplay(allPosts.filter(post => post.author === author));
+            setTitleToDisplay(author + "'s Posts");
         }
     }, [allPosts, author]);
 
@@ -64,6 +66,8 @@ const PostsList = () => {
             {postsToDisplay && postsToDisplay.map(post => (
                 <Post key={post.id} {...post} preview={true} />
             ))}
+
+            {postsStatus === "success" && !postsToDisplay?.length && <p>No posts yet</p>}
         </div>
     );
 };
