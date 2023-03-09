@@ -1,18 +1,16 @@
 import "./FiltersDropdown.css";
 
-import {useDispatch} from "react-redux";
-import {applyFilters, resetFilters, hideDropdown} from "../filtersSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {applyFilters, resetFilters, hideDropdown, getFilters} from "../filtersSlice";
 import {useState} from "react";
-
-const defaultFilters = {
-    author: "All",
-}
 
 const FiltersDropdown = () => {
 
     const dispatch = useDispatch();
 
-    const [filters, setFilters] = useState(defaultFilters);
+    const filtersApplied = useSelector(getFilters);
+
+    const [filters, setFilters] = useState(filtersApplied);
     const {author} = filters;
 
     const handleFilterChange = ({target}) => {

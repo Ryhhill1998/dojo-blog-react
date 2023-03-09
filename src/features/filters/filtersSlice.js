@@ -22,6 +22,7 @@ export const filtersSlice = createSlice({
         },
         resetFilters: state => {
             state.filters = initialState.filters;
+            state.visible = false;
         }
     }
 })

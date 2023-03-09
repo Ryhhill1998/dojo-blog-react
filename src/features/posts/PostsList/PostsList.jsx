@@ -29,8 +29,6 @@ const PostsList = () => {
     const [postsToDisplay, setPostsToDisplay] = useState(null);
     const [titleToDisplay, setTitleToDisplay] = useState("All Posts");
 
-    useEffect(() => setPostsToDisplay(allPosts), [allPosts]);
-
     // dropdown visibility
     const isDropdownVisible = useSelector(getVisibility);
 
@@ -40,8 +38,11 @@ const PostsList = () => {
     const {author} = filters;
 
     useEffect(() => {
-        if (!author || author === "All") return;
-        setPostsToDisplay(allPosts.filter(post => post.author === author));
+        if (!author || author === "All") {
+            setPostsToDisplay(allPosts);
+        } else {
+            setPostsToDisplay(allPosts.filter(post => post.author === author));
+        }
     }, [allPosts, author]);
 
     // filter dropdown function
