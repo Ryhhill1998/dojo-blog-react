@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPosts, getPostsStatus, selectAllPosts} from "../postsSlice";
 import FiltersDropdown from "../../filters/FiltersDropdown/FiltersDropdown";
-import {getVisibility, toggleDropdown} from "../../filters/filtersSlice";
+import {getFilters, getVisibility, toggleDropdown} from "../../filters/filtersSlice";
 
 const PostsList = () => {
 
@@ -31,7 +31,18 @@ const PostsList = () => {
 
     useEffect(() => setPostsToDisplay(allPosts), [allPosts]);
 
+    // dropdown visibility
     const isDropdownVisible = useSelector(getVisibility);
+
+    // dropdown filters
+    const filters = useSelector(getFilters);
+
+    const {author} = filters;
+
+    useEffect(() => {
+        if (!author || author === "All") return;
+        setPostsToDisplay(allPosts.filter(post => post.author === author));
+    }, [allPosts, author]);
 
     // filter dropdown function
     const handleFilterClicked = () => {
@@ -43,7 +54,7 @@ const PostsList = () => {
             <div className="posts-header">
                 <h2>
                     {titleToDisplay}
-                    <FontAwesomeIcon icon={faSliders} className="close-button icon" onClick={handleFilterClicked} />
+                    <FontAwesomeIcon icon={faSliders} className="icon" onClick={handleFilterClicked} />
                 </h2>
 
                 {isDropdownVisible && <FiltersDropdown />}

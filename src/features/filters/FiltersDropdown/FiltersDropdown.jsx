@@ -20,16 +20,14 @@ const FiltersDropdown = () => {
 
         setFilters(filters => {
             const updatedFilters = {...filters};
-            filters[name] = value;
-            console.log(updatedFilters)
+            updatedFilters[name] = value;
             return updatedFilters;
         });
-
-        console.log("filters updated")
     }
 
     const handleApplyClicked = () => {
         dispatch(applyFilters(filters));
+        dispatch(hideDropdown());
     }
 
     const handleResetClicked = () => {
