@@ -1,5 +1,5 @@
 import {useNavigate, useParams} from "react-router-dom";
-import Post from "../../common/components/PostsList/Post/Post";
+import Post from "../../common/components/Post/Post";
 
 import {useSelector} from "react-redux";
 import {selectAllPosts} from "../../features/posts/postsSlice";

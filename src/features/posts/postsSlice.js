@@ -66,10 +66,12 @@ export const postsSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(addNewPost.fulfilled, (state, action) => {
+                state.status = "idle";
                 state.allPosts.push(action.payload);
+                console.log("adding new post")
             })
             .addCase(deletePost.fulfilled, (state, action) => {
-                console.log(action.payload)
+                state.status = "idle";
                 state.allPosts = state.allPosts.filter(post => post.id !== action.payload);
             })
     }

@@ -6,7 +6,7 @@ import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
 
 import {useDispatch} from "react-redux";
-import {deletePost} from "../../../../features/posts/postsSlice";
+import {deletePost} from "../../../features/posts/postsSlice";
 
 const Post = ({id, title, content, author, preview}) => {
 

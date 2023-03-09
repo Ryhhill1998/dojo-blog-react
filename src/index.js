@@ -10,7 +10,7 @@ import {
 import store from './app/store'
 import { Provider } from 'react-redux'
 
-import App from './routes/Root/App';
+import App from './app/App';
 import ErrorPage from "./common/components/ErrorPage/ErrorPage";
 import Home from "./routes/Home/Home";
 import Create from "./routes/Create/Create";
